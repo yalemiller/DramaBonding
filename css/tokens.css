@@ -1,0 +1,51 @@
+/* Drama Bonding design tokens (from the design handoff). */
+
+:root {
+  /* Parchment */
+  --c-parchment: #f4efe2;
+  --c-parchment-deep: #ece5d1;
+  --c-parchment-shade: #e3dbc2;
+  --c-rule-soft: #d6cbb0;
+
+  /* Greens */
+  --c-ink: #1b2e22;
+  --c-forest: #24412f;
+  --c-forest-mid: #335a41;
+  --c-moss: #3d5a48;
+  --c-sage: #4f7a57;
+  --c-sage-ink: #4f6a56;
+  --c-body-ink: #2a3d30;
+  --c-warning-ink: #33493a;
+  --c-mint: #cfe0c8;
+  --c-sage-light: #9cb99c;
+  --c-player-track: #33493a;
+  --c-upcoming: #8a8a70;
+
+  /* Golds */
+  --c-gold: #b08a3e;
+  --c-gold-ink: #8a6a2c;
+  --c-gold-light: #dcc289;
+
+  /* Type */
+  --font-display: 'Federo', serif;
+  --font-text: 'Cormorant Garamond', Georgia, serif;
+  --font-ui: 'Josefin Sans', system-ui, sans-serif;
+  --font-mono: ui-monospace, Menlo, Consolas, monospace;
+
+  /* Layout */
+  --pad-x: clamp(20px, 4vw, 56px);
+  --anchor-offset: 110px;
+  --ease-book: cubic-bezier(.65, 0, .25, 1);
+
+  /* Hatched placeholder fills */
+  --hatch-light: repeating-linear-gradient(135deg, rgba(36, 65, 47, .10) 0 2px, transparent 2px 11px);
+  --hatch-fine: repeating-linear-gradient(135deg, rgba(36, 65, 47, .10) 0 2px, transparent 2px 7px);
+  --hatch-dark: repeating-linear-gradient(135deg, rgba(244, 239, 226, .12) 0 2px, transparent 2px 9px);
+}
+
+@media (width < 52rem) {
+  :root {
+    --pad-x: 18px;
+    --anchor-offset: 92px;
+  }
+}

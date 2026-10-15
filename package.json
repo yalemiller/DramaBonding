@@ -1,0 +1,11 @@
+{
+  "name": "drama-bonding",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Website for Drama Bonding, an actual-play tabletop podcast told in books.",
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "serve": "py -m http.server 8770 --bind 127.0.0.1"
+  }
+}

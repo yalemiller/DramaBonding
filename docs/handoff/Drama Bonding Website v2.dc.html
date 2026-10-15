@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Federo&family=Josefin+Sans:wght@400;600&display=swap" rel="stylesheet"><style>html{scroll-behavior:smooth}body{margin:0;background:#f4efe2;color:#1b2e22;-webkit-font-smoothing:antialiased}a{color:#24412f;text-decoration:none}a:hover{color:#4f7a57}*{box-sizing:border-box}.cast-photo .fun{opacity:0}.cast-photo:hover .fun{opacity:1}</style><script src="./image-slot.js"></script></helmet>
+<div style="min-height:100vh;background:#f4efe2;color:#1b2e22;padding-bottom:{{ playerPad }}">
+
+<header style="position:sticky;top:0;z-index:20;background:rgba(244,239,226,.96);backdrop-filter:blur(6px);padding:18px clamp(20px,4vw,56px) 0">
+  <div style="display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:20px;padding-bottom:14px">
+    <nav style="display:flex;gap:clamp(14px,2.2vw,30px);flex-wrap:wrap;font:600 12px/1 'Josefin Sans',sans-serif;letter-spacing:.22em;text-transform:uppercase">
+      <a href="#episodes" style="color:#1b2e22" style-hover="color:#4f7a57">Episodes</a>
+      <a href="#cast" style="color:#1b2e22" style-hover="color:#4f7a57">Cast</a>
+      <a href="#about" style="color:#1b2e22" style-hover="color:#4f7a57">About</a>
+    </nav>
+    <a href="#top" style="display:flex;flex-direction:column;align-items:center;gap:5px;text-align:center;color:#1b2e22">
+      <span style="font:400 clamp(20px,2.8vw,32px)/1 'Federo',serif;letter-spacing:.14em">DRAMA BONDING</span>
+      <span style="font:italic 400 14px/1 'Cormorant Garamond',serif;color:#4f7a57">a tale told at the table, in books</span>
+    </a>
+    <nav style="display:flex;gap:clamp(14px,2.2vw,26px);justify-content:flex-end;align-items:center;flex-wrap:wrap;font:600 12px/1 'Josefin Sans',sans-serif;letter-spacing:.22em;text-transform:uppercase">
+      <a href="#listen" style="color:#1b2e22;padding:11px 20px;border:1px solid #24412f;border-radius:999px" style-hover="background:#24412f;color:#f4efe2">Listen</a>
+      
+    </nav>
+  </div>
+  <div style="height:5px;border-top:1px solid #b08a3e;border-bottom:1px solid #b08a3e"></div>
+</header>
+
+<section id="top" data-screen-label="Hero" style="position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:48px;align-items:center;padding:72px clamp(20px,4vw,56px) 88px;overflow:hidden;scroll-margin-top:120px">
+  <sc-if value="{{ ornate }}" hint-placeholder-val="{{ true }}">
+    <div style="position:absolute;left:50%;top:50%;width:1000px;height:1000px;transform:translate(-50%,-50%);border-radius:50%;background:repeating-conic-gradient(from 0deg,rgba(176,138,62,.16) 0deg 2.5deg,transparent 2.5deg 10deg);mask-image:radial-gradient(circle,#000 22%,transparent 62%);pointer-events:none"></div>
+    <div style="position:absolute;left:50%;top:50%;width:640px;height:640px;transform:translate(-50%,-50%);border-radius:50%;background:repeating-radial-gradient(circle,transparent 0 17px,rgba(176,138,62,.28) 17px 18px);pointer-events:none"></div>
+  </sc-if>
+  <div style="position:relative;display:flex;flex-direction:column;gap:18px;align-items:flex-start">
+    <div style="font:600 12px/1 'Josefin Sans',sans-serif;letter-spacing:.24em;text-transform:uppercase;color:#4f7a57">Now unfolding · Book IV</div>
+    <h1 style="margin:0;font:italic 500 clamp(44px,5vw,64px)/1 'Cormorant Garamond',serif;text-wrap:balance">Thorns of the Gilded Court</h1>
+    <p style="margin:0;font:400 20px/1.5 'Cormorant Garamond',serif;max-width:340px;text-wrap:pretty">Three strangers, one crown, and a forest that remembers every promise ever broken beneath it.</p>
+    <span onClick="{{ startBookOne }}" style="cursor:pointer;font:italic 400 19px/1 'Cormorant Garamond',serif;border-bottom:1px solid #b08a3e;padding-bottom:3px" style-hover="color:#4f7a57">New here? Begin with Book I</span>
+  </div>
+  <div style="position:relative;max-width:420px;width:100%;justify-self:center;padding:10px;border-radius:999px 999px 8px 8px;background:#f4efe2;box-shadow:0 0 0 1px #b08a3e,0 0 0 9px #f4efe2,0 0 0 10px #24412f">
+    <div style="aspect-ratio:3/4.2;border-radius:999px 999px 4px 4px;background:repeating-linear-gradient(135deg,rgba(36,65,47,.10) 0 2px,transparent 2px 11px),#e3dbc2;display:grid;place-items:center;font:12px ui-monospace,Menlo,monospace;color:#4f6a56">book IV key art</div>
+  </div>
+  <div style="position:relative;display:flex;flex-direction:column;gap:16px;align-items:flex-start">
+    <div style="font:600 12px/1 'Josefin Sans',sans-serif;letter-spacing:.24em;text-transform:uppercase;color:#4f7a57">Latest · Episode {{ latest.n }}</div>
+    <div style="font:400 30px/1.15 'Federo',serif;max-width:320px">{{ latest.title }}</div>
+    <div style="font:italic 400 17px/1 'Cormorant Garamond',serif;color:#4f6a56">{{ latest.length }} · {{ latest.date }}</div>
+    <div onClick="{{ latest.play }}" style="cursor:pointer;display:flex;gap:12px;align-items:center;padding:15px 26px 15px 20px;border-radius:999px;background:#24412f;color:#f4efe2;font:600 12px/1 'Josefin Sans',sans-serif;letter-spacing:.2em;text-transform:uppercase" style-hover="background:#1b2e22"><span style="width:0;height:0;border-left:10px solid #dcc289;border-top:6px solid transparent;border-bottom:6px solid transparent"></span>Play episode</div>
+  </div>
+</section>
+
+<section id="episodes" data-screen-label="Episodes" style="padding:0 clamp(20px,4vw,56px) 88px;scroll-margin-top:110px">
+  <div style="display:flex;align-items:center;gap:16px"><div style="flex:1;height:1px;background:#b08a3e"></div><div style="width:9px;height:9px;transform:rotate(45deg);background:#b08a3e"></div><h2 style="margin:0;font:400 22px/1 'Federo',serif;letter-spacing:.16em">THE BOOKS</h2><div style="width:9px;height:9px;transform:rotate(45deg);background:#b08a3e"></div><div style="flex:1;height:1px;background:#b08a3e"></div></div>
+  <div style="display:flex;align-items:flex-end;gap:12px;height:clamp(740px,calc(100vh - 170px),840px);padding-top:28px;box-sizing:content-box">
+    <sc-for list="{{ books }}" as="b" hint-placeholder-count="4">
+      <div onClick="{{ b.select }}" style="cursor:pointer;position:relative;flex:{{ b.flex }};height:{{ b.h }};min-width:64px;overflow:hidden;background:{{ b.spine }};color:#f4efe2;transition:flex-grow .7s cubic-bezier(.65,0,.25,1),height .7s cubic-bezier(.65,0,.25,1)">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:64px;opacity:{{ b.spineOp }};transition:opacity .3s ease {{ b.spineDelay }};pointer-events:none;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:22px 0 20px">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:12px;width:100%"><div style="width:100%;height:6px;border-top:1px solid #dcc289;border-bottom:1px solid #dcc289"></div><div style="width:36px;height:36px;border-radius:50%;border:1px solid #dcc289;display:grid;place-items:center;font:400 14px/1 'Federo',serif;color:#dcc289">{{ b.num }}</div></div>
+            <div style="flex:1;min-height:0;display:flex;align-items:center;justify-content:center;padding:16px 0;overflow:hidden"><div style="writing-mode:vertical-rl;font:400 16px/1 'Federo',serif;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-height:100%">{{ b.title }}</div></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:12px;width:100%"><div style="font:600 10px/1 'Josefin Sans',sans-serif;letter-spacing:.12em;color:#cfe0c8">{{ b.yearShort }}</div><div style="width:100%;height:6px;border-top:1px solid #dcc289;border-bottom:1px solid #dcc289"></div></div>
+          </div>
+        <div style="position:absolute;top:0;bottom:0;left:0;width:100%;min-width:520px;opacity:{{ b.openOp }};transition:opacity .35s ease {{ b.openDelay }};pointer-events:{{ b.openPE }};padding:14px">
+          <div style="height:100%;display:grid;grid-template-columns:minmax(0,1fr) 28px minmax(0,1fr);background:#f4efe2;color:#1b2e22;box-shadow:0 0 0 1px #dcc289">
+            <div style="padding:clamp(16px,2vw,30px) clamp(14px,2.2vw,30px);display:flex;flex-direction:column;gap:clamp(10px,1.2vw,16px);min-width:0;overflow:hidden;box-shadow:inset -14px 0 16px -14px rgba(27,46,34,.3)">
+              <div style="display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center">
+                <div style="font:400 13px/1 'Federo',serif;letter-spacing:.2em;color:#8a6a2c">BOOK {{ b.num }}</div>
+                <div style="font:italic 500 clamp(26px,2.6vw,34px)/1 'Cormorant Garamond',serif;text-wrap:balance">{{ b.title }}</div>
+                <div style="display:flex;align-items:center;gap:8px;width:140px"><div style="flex:1;height:1px;background:#b08a3e"></div><div style="width:10px;height:10px;border-radius:50%;border:1px solid #b08a3e"></div><div style="flex:1;height:1px;background:#b08a3e"></div></div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:10px"><div style="display:flex;align-items:center;gap:10px"><div style="font:600 10px/1 'Josefin Sans',sans-serif;letter-spacing:.24em;text-transform:uppercase;color:#4f7a57">The tale</div><div style="flex:1;height:1px;background:#d6cbb0"></div></div><p style="margin:0;font:400 clamp(16px,1.45vw,20px)/1.4 'Cormorant Garamond',serif;color:#2a3d30;text-wrap:pretty">{{ b.blurb }}</p></div>
+              <div style="display:flex;flex-direction:column;gap:10px"><div style="display:flex;align-items:center;gap:10px"><div style="font:600 10px/1 'Josefin Sans',sans-serif;letter-spacing:.24em;text-transform:uppercase;color:#4f7a57">Themes</div><div style="flex:1;height:1px;background:#d6cbb0"></div></div><div style="display:flex;flex-wrap:wrap;gap:6px 16px"><sc-for list="{{ b.themes }}" as="t" hint-placeholder-count="4"><span style="display:flex;align-items:center;gap:7px;font:italic 500 17px/1.2 'Cormorant Garamond',serif;white-space:nowrap"><span style="width:5px;height:5px;transform:rotate(45deg);background:#b08a3e"></span>{{ t }}</span></sc-for></div></div>
+              <div style="display:flex;flex-direction:column;gap:12px;margin:auto 0">
+                <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px">
+                  <sc-for list="{{ b.cast }}" as="m" hint-placeholder-count="4"><div style="display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;min-width:0"><div style="width:min(calc(100% - 6px),84px);margin:3px;aspect-ratio:3/4;border-radius:999px 999px 2px 2px;border:1px solid #b08a3e;outline:1px solid #24412f;outline-offset:2px;background:repeating-linear-gradient(135deg,rgba(36,65,47,.10) 0 2px,transparent 2px 7px),#e3dbc2;display:grid;place-items:center;font:8px ui-monospace,Menlo,monospace;color:#4f6a56"><span>photo</span></div><div style="font:italic 500 15px/1.05 'Cormorant Garamond',serif;padding-top:2px">{{ m.asLine }}</div><div style="font:600 8.5px/1.25 'Josefin Sans',sans-serif;letter-spacing:.08em;text-transform:uppercase">{{ m.name }} <span style="font:400 12px/1 'Cormorant Garamond',serif;letter-spacing:0;text-transform:none;color:#4f6a56">{{ m.pronouns }}</span></div></div></sc-for>
+                </div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:10px"><div style="display:flex;align-items:center;gap:10px"><div style="font:600 10px/1 'Josefin Sans',sans-serif;letter-spacing:.24em;text-transform:uppercase;color:#4f7a57">Content warnings</div><div style="flex:1;height:1px;background:#d6cbb0"></div></div><div style="font:italic 400 15px/1.4 'Cormorant Garamond',serif;color:#33493a;text-wrap:pretty">{{ b.warnings }}</div></div>
+              
+              
+              
+              
+            </div>
+            <div style="display:flex;justify-content:center;background:linear-gradient(90deg,rgba(27,46,34,.06),rgba(176,138,62,.14),rgba(27,46,34,.06))"><div style="height:100%;width:5px;border-left:1px solid #b08a3e;border-right:1px solid #b08a3e;position:relative;display:flex;align-items:center;justify-content:center"><div style="position:absolute;width:10px;height:10px;transform:rotate(45deg);background:#b08a3e"></div></div></div>
+            <div style="padding:clamp(16px,2vw,30px) clamp(14px,2.2vw,30px);display:flex;flex-direction:column;gap:clamp(10px,1.2vw,16px);min-width:0;overflow:hidden;box-shadow:inset 14px 0 16px -14px rgba(27,46,34,.3)">
+              
+              
+              
+              <div style="display:flex;flex-direction:column;gap:4px;min-height:0"><div style="display:flex;align-items:center;gap:10px"><div style="font:600 10px/1 'Josefin Sans',sans-serif;letter-spacing:.24em;text-transform:uppercase;color:#4f7a57">Contents</div><div style="flex:1;height:1px;background:#d6cbb0"></div></div>
+                <sc-for list="{{ b.contents }}" as="e" hint-placeholder-count="9"><div style="display:flex;align-items:center;gap:12px;padding:7px 0;border-bottom:1px solid #e3dbc2;opacity:{{ e.op }}">
+                  <div style="width:40px;flex:none;font:italic 500 clamp(20px,1.7vw,24px)/1 'Cormorant Garamond',serif;color:#8a6a2c">{{ e.roman }}.</div>
+                  <div style="flex:1;min-width:0;font:500 clamp(19px,1.7vw,24px)/1.12 'Cormorant Garamond',serif;text-wrap:pretty">{{ e.title }}</div>
+                  <sc-if value="{{ e.released }}" hint-placeholder-val="{{ true }}"><div onClick="{{ e.play }}" style="cursor:pointer;width:36px;height:36px;flex:none;border-radius:50%;border:1px solid #24412f;display:grid;place-items:center;background:{{ e.btnBg }}" style-hover="background:#e3dbc2">
+                    <sc-if value="{{ e.isPlaying }}" hint-placeholder-val="{{ false }}"><span style="display:flex;gap:3px"><span style="width:3px;height:10px;background:#8a6a2c"></span><span style="width:3px;height:10px;background:#8a6a2c"></span></span></sc-if>
+                    <sc-if value="{{ e.notPlaying }}" hint-placeholder-val="{{ true }}"><span style="width:0;height:0;margin-left:2px;border-left:11px solid #8a6a2c;border-top:7px solid transparent;border-bottom:7px solid transparent"></span></sc-if>
+                  </div></sc-if>
+                  <sc-if value="{{ e.upcoming }}" hint-placeholder-val="{{ false }}"><div style="width:36px;height:36px;flex:none;border-radius:50%;border:1px dashed #8a8a70"></div></sc-if>
+                </div></sc-for>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+  
+
+</section>
+
+<section id="cast" data-screen-label="Cast" style="background:#24412f;color:#f4efe2;padding:44px clamp(20px,4vw,56px);display:flex;flex-direction:column;gap:26px;scroll-margin-top:110px">
+  <div style="display:flex;align-items:center;justify-content:center;gap:18px"><div style="flex:1;display:flex;align-items:center;gap:6px;max-width:360px"><div style="width:5px;height:5px;border-radius:50%;background:#dcc289"></div><div style="flex:1;height:5px;border-top:1px solid #dcc289;border-bottom:1px solid #dcc289;border-radius:999px 0 0 999px"></div><div style="width:6px;height:6px;transform:rotate(45deg);border:1px solid #dcc289"></div><div style="width:14px;height:14px;border-radius:50%;border:1px solid #dcc289;display:grid;place-items:center"><div style="width:6px;height:6px;transform:rotate(45deg);background:#dcc289"></div></div></div><h2 style="margin:0;font:400 30px/1 'Federo',serif;letter-spacing:.14em;text-align:center;white-space:nowrap">THE CAST</h2><div style="flex:1;display:flex;align-items:center;gap:6px;max-width:360px;transform:scaleX(-1)"><div style="width:5px;height:5px;border-radius:50%;background:#dcc289"></div><div style="flex:1;height:5px;border-top:1px solid #dcc289;border-bottom:1px solid #dcc289;border-radius:999px 0 0 999px"></div><div style="width:6px;height:6px;transform:rotate(45deg);border:1px solid #dcc289"></div><div style="width:14px;height:14px;border-radius:50%;border:1px solid #dcc289;display:grid;place-items:center"><div style="width:6px;height:6px;transform:rotate(45deg);background:#dcc289"></div></div></div></div>
+  <div style="display:flex;flex-wrap:wrap;gap:40px;align-items:flex-start">
+    <div style="flex:1 1 260px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 8px">
+      <sc-for list="{{ cast }}" as="c" hint-placeholder-count="11"><div onClick="{{ c.select }}" style="cursor:pointer;display:flex;flex-direction:column;gap:8px;padding:6px;background:{{ c.rowBg }}" style-hover="background:rgba(220,194,137,.12)">
+        <sc-if value="{{ c.hasPhoto }}" hint-placeholder-val="{{ false }}"><div class="cast-photo" style="position:relative;width:100%;aspect-ratio:1;border:1px solid #dcc289;outline:1px solid {{ c.frame }};outline-offset:3px;overflow:hidden"><div role="img" aria-label="{{ c.name }}" style="position:absolute;inset:0;filter:grayscale(1);background-image:{{ c.stdBg }};background-size:cover;background-position:50% 20%"></div><div class="fun" style="position:absolute;inset:0;filter:grayscale(1);opacity:{{ c.funOp }};background-image:{{ c.funBg }};background-size:cover;background-position:50% 20%"></div></div></sc-if><sc-if value="{{ c.noPhoto }}" hint-placeholder-val="{{ true }}"><div style="width:100%;aspect-ratio:1;border:1px solid #dcc289;outline:1px solid {{ c.frame }};outline-offset:3px;background:repeating-linear-gradient(135deg,rgba(244,239,226,.12) 0 2px,transparent 2px 9px),#335a41;display:grid;place-items:center;font:10px ui-monospace,Menlo,monospace;color:#cfe0c8">photo</div></sc-if>
+        <div style="display:flex;flex-direction:column;gap:4px;min-width:0"><div style="font:600 11px/1 'Josefin Sans',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:{{ c.nameColor }}">{{ c.name }}</div><div style="font:400 14px/1 'Cormorant Garamond',serif;color:#cfe0c8">{{ c.pronouns }}</div></div>
+      </div></sc-for>
+    </div>
+    <div style="flex:2.4 1 520px;min-width:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:clamp(24px,3vw,44px);align-items:start;padding:28px clamp(20px,3vw,36px);background:#f4efe2;color:#1b2e22;border-radius:4px;box-shadow:0 0 0 1px #dcc289,0 0 0 8px #24412f,0 0 0 9px #dcc289;margin:9px">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center">
+      <div style="width:calc(100% - 18px);max-width:460px;padding:8px;margin:9px;border-radius:999px 999px 8px 8px;background:#f4efe2;box-shadow:0 0 0 1px #b08a3e,0 0 0 8px #f4efe2,0 0 0 9px #24412f">
+        <div class="cast-photo" style="position:relative;aspect-ratio:3/4.2;border-radius:999px 999px 4px 4px;overflow:hidden;background:#e3dbc2">
+          <sc-for list="{{ castPhotos }}" as="p" hint-placeholder-count="1"><div style="position:absolute;inset:0;display:{{ p.display }};filter:grayscale(1) contrast(1.05)">
+            <image-slot id="{{ p.stdId }}" src="{{ p.stdSrc }}" shape="rect" placeholder="Drop {{ p.first }}’s standard photo" style="position:absolute;inset:0;width:100%;height:100%"></image-slot>
+            <div class="fun" style="position:absolute;inset:0"><image-slot id="{{ p.funId }}" src="{{ p.funSrc }}" shape="rect" placeholder="Hover photo — drop {{ p.first }}’s fun shot" style="position:absolute;inset:0;width:100%;height:100%"></image-slot></div>
+          </div></sc-for>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:12px;padding-top:10px;width:100%"><div style="font:italic 500 clamp(34px,3.6vw,46px)/1 'Cormorant Garamond',serif">{{ sel.name }}</div><div style="display:flex;align-items:center;gap:6px;width:100%;max-width:280px"><div style="width:5px;height:5px;border-radius:50%;background:#b08a3e"></div><div style="flex:1;height:5px;border-top:1px solid #b08a3e;border-bottom:1px solid #b08a3e;border-radius:0 0 999px 999px"></div><div style="width:6px;height:6px;transform:rotate(45deg);border:1px solid #b08a3e"></div><div style="width:14px;height:14px;border-radius:50%;border:1px solid #b08a3e;display:grid;place-items:center"><div style="width:6px;height:6px;transform:rotate(45deg);background:#b08a3e"></div></div><div style="width:6px;height:6px;transform:rotate(45deg);border:1px solid #b08a3e"></div><div style="flex:1;height:5px;border-top:1px solid #b08a3e;border-bottom:1px solid #b08a3e;border-radius:0 0 999px 999px"></div><div style="width:5px;height:5px;border-radius:50%;background:#b08a3e"></div></div><div style="font:600 13px/1 'Josefin Sans',sans-serif;letter-spacing:.14em;color:#4f6a56">{{ sel.pronouns }}</div></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px;align-items:flex-start;padding-top:8px">
+      
+      
+      
+      
+      <div style="display:flex;align-items:center;gap:14px;width:100%;max-width:620px"><div style="font:400 22px/1 'Federo',serif;letter-spacing:.16em;color:#1b2e22">BIOGRAPHY</div><div style="width:7px;height:7px;transform:rotate(45deg);background:#b08a3e"></div><div style="flex:1;height:1px;background:#b08a3e"></div></div>
+      <div style="display:flex;flex-direction:column;gap:12px;max-width:620px">
+        <sc-for list="{{ sel.bioParas }}" as="p" hint-placeholder-count="3"><p style="margin:0;font:400 18px/1.5 'Cormorant Garamond',serif;text-wrap:pretty">{{ p }}</p></sc-for>
+      </div>
+      
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about" data-screen-label="About" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:56px;align-items:center;padding:88px clamp(20px,4vw,56px);max-width:1200px;margin:0 auto;scroll-margin-top:110px">
+  <div style="display:flex;flex-direction:column;gap:20px">
+    <div style="font:600 12px/1 'Josefin Sans',sans-serif;letter-spacing:.24em;text-transform:uppercase;color:#4f7a57">About the show</div>
+    <h2 style="margin:0;font:italic 500 clamp(36px,4vw,52px)/1.05 'Cormorant Garamond',serif;text-wrap:balance">Friends who should know better, rolling dice in the dark and calling it theatre.</h2>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:18px;font:400 20px/1.55 'Cormorant Garamond',serif;text-wrap:pretty">
+    <p style="margin:0">Drama Bonding is an actual-play tabletop podcast, told in books. Each book is a complete tale — begin anywhere, though the wood remembers if you skip ahead.</p>
+    <p style="margin:0">New chapters arrive every other Wednesday. Expect heartbreak, poor decisions, and at least one song per session.</p>
+    <div style="display:flex;align-items:center;gap:12px;padding-top:6px"><div style="width:48px;height:1px;background:#b08a3e"></div><div style="font:400 14px/1 'Federo',serif;letter-spacing:.18em;color:#8a6a2c">EST. 2024</div></div>
+  </div>
+</section>
+
+<section id="listen" data-screen-label="Listen" style="background:#ece5d1;border-top:1px solid #b08a3e;border-bottom:1px solid #b08a3e;padding:72px clamp(20px,4vw,56px);display:flex;flex-direction:column;align-items:center;gap:28px;text-align:center;scroll-margin-top:110px">
+  <div style="display:flex;align-items:center;gap:16px;width:100%;max-width:640px"><div style="flex:1;height:1px;background:#b08a3e"></div><div style="width:9px;height:9px;transform:rotate(45deg);background:#b08a3e"></div><h2 style="margin:0;font:400 22px/1 'Federo',serif;letter-spacing:.16em">LISTEN</h2><div style="width:9px;height:9px;transform:rotate(45deg);background:#b08a3e"></div><div style="flex:1;height:1px;background:#b08a3e"></div></div>
+  <div style="font:italic 500 clamp(30px,3.4vw,42px)/1.1 'Cormorant Garamond',serif;max-width:640px;text-wrap:balance">Wherever stories are told, we are there.</div>
+  <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center">
+    <sc-for list="{{ platforms }}" as="p" hint-placeholder-count="5"><a href="#listen" style="padding:15px 26px;border-radius:999px;border:1px solid #24412f;font:600 12px/1 'Josefin Sans',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#1b2e22" style-hover="background:#24412f;color:#f4efe2">{{ p }}</a></sc-for>
+  </div>
+</section>
+
+<footer style="background:#1b2e22;color:#cfe0c8;padding:44px clamp(20px,4vw,56px);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px">
+  <div style="font:400 20px/1 'Federo',serif;letter-spacing:.14em;color:#f4efe2">DRAMA BONDING</div>
+  <div style="font:italic 400 17px/1 'Cormorant Garamond',serif">Every tale ends. Ours just hasn’t yet.</div>
+  <a href="#top" style="font:600 11px/1 'Josefin Sans',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#dcc289">Back to top</a>
+</footer>
+
+<sc-if value="{{ hasPlayer }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed;left:0;right:0;bottom:0;z-index:30;background:#1b2e22;color:#f4efe2;border-top:1px solid #b08a3e">
+    <div style="height:3px;background:#33493a"><div style="height:3px;background:#dcc289;width:{{ progressPct }}"></div></div>
+    <div style="display:flex;align-items:center;gap:18px;padding:14px clamp(20px,4vw,56px)">
+      <div onClick="{{ togglePlay }}" style="cursor:pointer;width:44px;height:44px;flex:none;border-radius:50%;border:1px solid #dcc289;display:grid;place-items:center" style-hover="background:#24412f">
+        <sc-if value="{{ isPaused }}" hint-placeholder-val="{{ false }}"><span style="width:0;height:0;margin-left:3px;border-left:11px solid #dcc289;border-top:7px solid transparent;border-bottom:7px solid transparent"></span></sc-if>
+        <sc-if value="{{ isRunning }}" hint-placeholder-val="{{ true }}"><span style="display:flex;gap:4px"><span style="width:4px;height:13px;background:#dcc289"></span><span style="width:4px;height:13px;background:#dcc289"></span></span></sc-if>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:5px;min-width:0;flex:1"><div style="font:600 10px/1 'Josefin Sans',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#9cb99c">Book {{ now.bookNum }} · Episode {{ now.n }}</div><div style="font:italic 500 20px/1.1 'Cormorant Garamond',serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ now.title }}</div></div>
+      <div style="font:600 11px/1 'Josefin Sans',sans-serif;letter-spacing:.12em;color:#9cb99c">{{ timeLabel }}</div>
+      <div onClick="{{ closePlayer }}" style="cursor:pointer;width:44px;height:44px;display:grid;place-items:center;font:400 22px/1 'Cormorant Garamond',serif;color:#9cb99c" style-hover="color:#f4efe2">×</div>
+    </div>
+  </div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;ornate&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Ornament&quot;}}">
+const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV','XVI'];
+const BOOKS = [
+  { num: 'I', themes: ["Found family","Forbidden bargains","Grief","Fae courts","Romance"], warnings: "Body horror (mild), death of a loved one, drowning, insects, references to abandonment.", title: 'The Verdant Overture', meta: '9 episodes · complete', blurb: 'A wedding in the wood, a vanished groom, and three guests who were never meant to meet. As the feast curdles and the lanterns gutter, an old bargain beneath the orchard begins to stir — and the price of finding the groom may be a vow none of them can afford to keep.', spine: '#24412f', ink: '#f4efe2', height: 480, start: new Date(2024, 8, 4),
+    eps: ['The Invitation Arrives in Ivy','A Feast Without a Host','Lanterns on the Black Water','The Groom Who Walked Backwards','Of Moths and Minor Treasons','The Orchard of Teeth','Hymn for a Hollow Saint','Chess with the Heron King','What We Buried at Dawn'] },
+  { num: 'II', themes: ["Duty and sacrifice","Faith and doubt","Isolation","Cosmic dread"], warnings: "Fire and burns, fog-induced panic, religious trauma, death, implied self-sacrifice.", title: 'The Lantern Oath', meta: '9 episodes · complete', blurb: 'Three lamplighters on a city wall, keeping a flame that something beyond the fog would very much like put out. Each night the fog speaks a little louder, and each night it knows a little more about them. When the oil runs low, they must decide what — and who — is worth burning.', spine: '#3d5a48', ink: '#f4efe2', height: 480, start: new Date(2025, 2, 12),
+    eps: ['First Light on the Wall','The Fog Has a Voice','Oil and Ash','A Watchman’s Lullaby','The Moth Bishop','What the Harbour Keeps','Ninety-Nine Steps Down','The Cinder Census','Lanterns Out'] },
+  { num: 'III', themes: ["Identity and masks","Time loops","Decadence","Escape"], warnings: "Being trapped, loss of time, mind control, body transformation, alcohol use.", title: 'Moss & Masquerade', meta: '9 episodes · complete', blurb: 'An invitation to a ball that has lasted a century. Three guests arrive; none are permitted to leave. Behind lacquered masks the dancers are growing moss, the host is perpetually late, and the clocks have begun to run backwards. To escape, they will have to learn the steps — and then break them.', spine: '#4f7a57', ink: '#f4efe2', height: 480, start: new Date(2025, 8, 3),
+    eps: ['The Hundredth Year of Dancing','Masks of Bark and Lacquer','The Host Is Late Again','A Toast to the Drowned','Moss in the Ballroom','The Clockmaker’s Daughter','Intermission','Partners Exchanged','The Unmasking Hour'] },
+  { num: 'IV', themes: ["Oaths and debt","Political intrigue","Revenge","Class"], warnings: "Violence, blood, betrayal, drowning, coercion, references to past abuse.", title: 'Thorns of the Gilded Court', meta: '9 episodes · ongoing', blurb: 'Sworn beneath a dying oak, three strangers are summoned to a court that feeds on oaths. Every promise spoken in its gilded halls is weighed, and every broken one is collected. Between masked duchesses, silver debts and a drowned queen who will not stay buried, honesty may prove the deadliest weapon of all.', spine: '#1b2e22', ink: '#f4efe2', height: 480, start: new Date(2026, 2, 25),
+    total: 9, eps: ['The Oak Remembers','Summons in Gold Leaf','A Masque of Borrowed Faces','The Duchess of Small Hours','Knives Under Velvet','The Thorn Garden'] }
+];
+const LENGTHS = ['2 h 41 m','3 h 02 m','2 h 55 m','2 h 37 m','3 h 11 m','2 h 48 m','2 h 29 m'];
+const SUMMARIES = [
+  'In which old debts come due, a candle is lit that should not have been, and someone says the quiet part aloud.',
+  'In which the company splits, the forest listens, and a song is sung that no one will admit to having written.',
+  'In which a door opens onto the wrong year, a friend tells a necessary lie, and the dice are unkind.',
+  'In which there is dancing, then knives, then a very long silence.'
+];
+const CAST = [
+  { book: null, lead: true, name: 'Alex Marlowe', first: 'Alex', pronouns: 'he/him', characterName: 'Lead Storyteller', playerBio: 'Sample bio — the voice of every villain, innkeeper and whispering tree. He builds each world, then cruelly lets it speak.' },
+  { book: 0, name: 'Morgan Hale', first: 'Morgan', pronouns: 'she/her', characterName: 'Wren Ashveil', classLine: 'HALF-ELF · RANGER', characterBio: 'A tracker who can follow anything through the wood except her own heart, which keeps doubling back.', playerBio: 'Sample bio — writer and theatre kid; first voice at the first table.' },
+  { book: 0, name: 'Riley Okafor', first: 'Riley', pronouns: 'they/them', characterName: 'Thistle', also: [{ book: 2, characterName: 'Kestrel' }], classLine: 'GNOME · BARD', characterBio: 'A songsmith who lies for a living and tells the truth only in verse. Owes money to at least three fae.', playerBio: 'Sample bio — musician and improviser; the reason every session has a song.' },
+  { book: 0, name: 'Sam Brennan', first: 'Sam', pronouns: 'he/him', characterName: 'Oren Vale', classLine: 'HUMAN · PALADIN', characterBio: 'A knight sworn to a god no temple remembers. He keeps the oath anyway — faith, or stubbornness.', playerBio: 'Sample bio — teacher by day, sincere to a fault by night.' },
+  { book: 1, name: 'Jules Castellanos', first: 'Jules', pronouns: 'she/they', characterName: 'Maeve Corrin', also: [{ book: 3, characterName: 'Aurelie Vance' }], classLine: 'TIEFLING · WARLOCK', characterBio: 'She made a bargain at nine years old and has been reading the fine print ever since.', playerBio: 'Sample bio — actor and audio editor; makes the show sound like weather.' },
+  { book: 1, name: 'Avery Lindqvist', first: 'Avery', pronouns: 'he/him', characterName: 'Brannoch', classLine: 'FIRBOLG · DRUID', characterBio: 'A gentle giant who speaks to moss and mourns every felled tree by name.', playerBio: 'Sample bio — illustrator; draws the company between sessions.' },
+  { book: 1, name: 'Casey Moreau', first: 'Casey', pronouns: 'they/them', characterName: 'Lysette', classLine: 'ELF · ROGUE', characterBio: 'Court-born, court-exiled, and quietly planning to go back with a knife.', playerBio: 'Sample bio — stage manager who runs the table’s secret notes.' },
+  { book: 2, name: 'Drew Patel', first: 'Drew', pronouns: 'he/they', characterName: 'Pell Ambersmoke', classLine: 'HALFLING · ARTIFICER', characterBio: 'Builds clockwork birds to carry messages to people who are no longer alive to read them.', playerBio: 'Sample bio — engineer; brings props to the table.' },
+  { book: 2, name: 'Quinn Ashby', first: 'Quinn', pronouns: 'she/her', characterName: 'Sister Ysolde', classLine: 'HUMAN · CLERIC', characterBio: 'A nun of the Lantern who has stopped believing in the dark, which is precisely the problem.', playerBio: 'Sample bio — choir singer and chronic over-planner.' },
+  { book: 3, name: 'Harper Nakamura', first: 'Harper', pronouns: 'he/him', characterName: 'Cassius Thorne', classLine: 'DRAGONBORN · SORCERER', characterBio: 'Heir to a fortune made of debts. Every spell he casts is paid for by somebody else.', playerBio: 'Sample bio — podcast producer; keeps the episodes on schedule.' },
+  { book: 3, name: 'Emery Doyle', first: 'Emery', pronouns: 'she/her', characterName: 'Nell o’ the Hollow', classLine: 'GOBLIN · FIGHTER', characterBio: 'Small, loud, and absolutely certain she is the hero of this story.', playerBio: 'Sample bio — comedian; reliably the first to roll a one.' }
+];
+const DEMO_PHOTOS = ['./assets/cast/alex-default.png', './assets/cast/alex-hover.png'];
+const PHOTOS = new Proxy({}, { get: () => DEMO_PHOTOS }); // demo: everyone uses Alex's photos until real ones arrive
+const BIO_POOL = [
+  'Before the podcast there was a kitchen table, a borrowed rulebook and a session that was meant to last two hours and ended at four in the morning. Nobody has entirely recovered. What began as a way to stay in touch became a weekly ritual, then a recording, then — somewhat to everyone’s surprise — an audience.',
+  'Outside the game they work in a field that has very little to do with dragons, which they insist is the secret: the table is where the rest of the week gets to be strange. Favourite moments tend to be the quiet ones — a character choosing mercy, a joke that lands at precisely the wrong time, a roll that changes everything.',
+  'They are drawn to characters who want something they can’t say out loud, and to stories where the cost of a choice arrives three episodes later. Between sessions they keep a notebook of half-finished backstories, overheard lines and names that might one day belong to someone.',
+  'Listeners can find them most weeks in the community chat, cheerfully refusing to confirm theories. When not recording they can be found reading, walking somewhere green, or rewatching the same three films. They would like it noted that they were right about the lantern.'
+];
+const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+const rolesOf = c => c.lead ? BOOKS.map((_, bi) => ({ book: bi, characterName: 'Lead Storyteller' })) : [{ book: c.book, characterName: c.characterName }, ...(c.also || [])];
+const roleIn = (c, b) => rolesOf(c).find(r => r.book === b);
+const toSec = s => { const m = s.match(/(\d+) h (\d+) m/); return m ? (+m[1]) * 3600 + (+m[2]) * 60 : 0; };
+const fmt = t => { const h = Math.floor(t / 3600), m = Math.floor(t % 3600 / 60), s = Math.floor(t % 60); return h + ':' + String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0'); };
+
+class Component extends DCLogic {
+  state = { book: 3, open: true, epOpen: null, showAll: false, cast: null, play: null, paused: false, pos: 0 };
+  componentDidMount() {
+    this.timer = setInterval(() => { if (this.state.play && !this.state.paused) this.setState(s => ({ pos: s.pos + 1 })); }, 1000);
+  }
+  componentWillUnmount() { clearInterval(this.timer); }
+  ep(b, i) {
+    const B = BOOKS[b], d = new Date(B.start.getTime() + i * 14 * 864e5);
+    return { b, i, n: i + 1, roman: ROMAN[i], title: B.eps[i], length: LENGTHS[(i + b * 3) % LENGTHS.length], date: MONTHS[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear(), bookNum: B.num };
+  }
+  playEp(b, i, e) {
+    if (e) e.stopPropagation();
+    const p = this.state.play;
+    if (p && p.b === b && p.i === i) this.setState(s => ({ paused: !s.paused }));
+    else this.setState({ play: { b, i }, paused: false, pos: 0 });
+  }
+  scrollTo(id) {
+    const el = document.getElementById(id);
+    if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 100, behavior: 'smooth' });
+  }
+  contentsFor(bi) {
+    const st = this.state, p = st.play, B = BOOKS[bi];
+    const rows = B.eps.map((_, i) => { const e = this.ep(bi, i); const isCur = !!(p && p.b === bi && p.i === i); const isPlaying = isCur && !st.paused; return { roman: e.roman, title: e.title, meta: e.length, op: 1, released: true, upcoming: false, isPlaying, notPlaying: !isPlaying, btnBg: isCur ? '#e3dbc2' : 'transparent', play: ev => this.playEp(bi, i, ev) }; });
+    const UP = ['The Silver Inquest', 'A Crown Returned to Water', 'Thorns’ End'];
+    for (let i = B.eps.length; i < (B.total || B.eps.length); i++) rows.push({ roman: ROMAN[i], title: UP[i - B.eps.length] || 'Untitled', meta: 'Soon', op: 0.5, released: false, upcoming: true });
+    return rows;
+  }
+  renderVals() {
+    const st = this.state;
+    const sb = st.spreadBook ?? st.book;
+    const B = BOOKS[sb];
+    const YEARS = ['2024 – 2025', '2025', '2025 – 2026', '2026 – now'];
+    const statusOf = bk => { const s = (bk.meta.split(' · ')[1] || ''); return s.charAt(0).toUpperCase() + s.slice(1); };
+    const books = BOOKS.map((bk, idx) => {
+      const on = idx === st.book;
+      return {
+        num: bk.num, title: bk.title, blurb: bk.blurb, warnings: bk.warnings,
+        cast: CAST.filter(c => roleIn(c, idx)).map(c => ({ name: c.name, pronouns: c.pronouns, asLine: c.lead ? 'Lead Storyteller' : roleIn(c, idx).characterName })),
+        contents: this.contentsFor(idx), themes: bk.themes, spine: bk.spine, years: YEARS[idx], yearShort: YEARS[idx].slice(0, 4), status: statusOf(bk), countLabel: bk.total ? bk.eps.length + ' of ' + bk.total + ' chapters' : bk.eps.length + ' chapters',
+        flex: on ? '1 0 64px' : '0 0 64px', h: on ? '100%' : ['88%', '96%', '82%', '92%'][idx], spineOp: on ? 0 : 1, spineDelay: on ? '0s' : '.35s', openOp: on ? 1 : 0, openDelay: on ? '.4s' : '0s', openPE: on ? 'auto' : 'none', hasEps: bk.eps.length > 0,
+        playFirst: e => { e.stopPropagation(); this.playEp(idx, 0); },
+        bg: on ? '#ece5d1' : 'transparent',
+        frame: on ? '0 0 0 1px #b08a3e,0 0 0 7px #f4efe2,0 0 0 8px #24412f' : '0 0 0 1px #d6cbb0',
+        select: () => { if (idx === st.book) return; clearTimeout(this.turnT); this.setState({ book: idx, epOpen: null, showAll: false, turning: true }); this.turnT = setTimeout(() => this.setState({ spreadBook: idx, turning: false }), 300); }
+      };
+    });
+    const all = B.eps.map((_, i) => this.ep(st.book, i)).reverse();
+    const shown = st.showAll ? all : all.slice(0, 6);
+    const p = st.play;
+    const episodeList = shown.map(e => {
+      const isCur = p && p.b === e.b && p.i === e.i;
+      const isPlaying = !!(isCur && !st.paused);
+      const key = e.b + '-' + e.i;
+      return {
+        ...e, summary: SUMMARIES[e.i % SUMMARIES.length],
+        isOpen: st.epOpen === key, toggleLabel: st.epOpen === key ? 'close' : 'details',
+        toggle: () => this.setState(s => ({ epOpen: s.epOpen === key ? null : key })),
+        play: ev => this.playEp(e.b, e.i, ev),
+        isPlaying, notPlaying: !isPlaying,
+        btnBg: isCur ? '#24412f' : 'transparent',
+        playLabel: isPlaying ? 'Pause' : (isCur ? 'Resume' : 'Play episode')
+      };
+    });
+    const lastII = this.ep(3, BOOKS[3].eps.length - 1);
+    const now = p ? this.ep(p.b, p.i) : null;
+    const dur = now ? toSec(now.length) : 1;
+    const pos = Math.min(st.pos, dur);
+    const castItems = CAST.map((c, idx) => ({ ...c, appearances: rolesOf(c).map(r => r.book).map(bi => ({ num: 'Book ' + BOOKS[bi].num, title: BOOKS[bi].title, meta: BOOKS[bi].meta.split(' · ')[0], role: c.lead ? 'Lead Storyteller' : 'as ' + c.characterName, open: () => { this.setState({ book: bi, spreadBook: bi, open: true, epOpen: null, showAll: false }); this.scrollTo('episodes'); } })), open: (st.cast ?? 0) === idx, kind: c.lead ? 'Lead Storyteller · Every book' : 'Book ' + BOOKS[c.book].num + ' · ' + BOOKS[c.book].title, bookNum: BOOKS[c.lead ? 3 : c.book].num, select: () => this.setState({ cast: idx }), openBook: () => { this.setState({ book: c.lead ? 3 : c.book, spreadBook: c.lead ? 3 : c.book, open: true, epOpen: null, showAll: false }); this.scrollTo('episodes'); } }));
+    return {
+      ornate: this.props.ornate ?? true,
+      playerPad: p ? '76px' : '0px',
+      latest: { ...lastII, play: () => this.playEp(3, lastII.i) },
+      startBookOne: () => { this.setState({ book: 0, spreadBook: 0, epOpen: null, showAll: false }); this.scrollTo('episodes'); },
+      books,
+      book: { num: B.num, title: B.title, blurb: B.blurb, spine: B.spine, themes: B.themes, warnings: B.warnings, years: YEARS[st.book], status: statusOf(B), countLabel: B.total ? B.eps.length + ' of ' + B.total + ' released' : B.eps.length + ' released' },
+      hasEpisodes: B.eps.length > 0,
+      playFirst: () => this.playEp(st.book, 0),
+      noEpisodes: B.eps.length === 0,
+      tableCast: CAST.filter(c => roleIn(c, sb)).map(c => ({ ...c, asLine: c.lead ? 'as Lead Storyteller' : 'as ' + roleIn(c, sb).characterName })),
+      leftTurn: st.turning ? 'translateY(6px)' : 'none',
+      rightTurn: st.turning ? 'translateY(6px)' : 'none',
+      pageOp: st.turning ? 0 : 1,
+      episodeList,
+      castLine: CAST.filter(c => !c.lead && roleIn(c, st.book)).map(c => roleIn(c, st.book).characterName + ' (' + c.name + ')').join(' · ') + ' — told by ' + CAST[0].name,
+      contents: (() => {
+        const rows = B.eps.map((_, i) => { const e = this.ep(sb, i); const isCur = p && p.b === sb && p.i === i; const isPlaying = !!(isCur && !st.paused); return { roman: e.roman, title: e.title, meta: e.date + ' · ' + e.length, op: 1, released: true, upcoming: false, isPlaying, notPlaying: !isPlaying, btnBg: isCur ? '#24412f' : 'transparent', play: () => this.playEp(sb, i) }; });
+        const UP = ['The Silver Inquest', 'A Crown Returned to Water', 'Thorns’ End'];
+        for (let i = B.eps.length; i < (B.total || B.eps.length); i++) rows.push({ roman: ROMAN[i], title: UP[i - B.eps.length] || 'Untitled', meta: 'Coming soon', op: 0.5, released: false, upcoming: true });
+        return rows;
+      })(),
+      hasMore: all.length > 6,
+      moreLabel: st.showAll ? 'Show only the latest' : 'All ' + all.length + ' chapters',
+      toggleAll: () => this.setState(s => ({ showAll: !s.showAll })),
+      cast: castItems.map(c => ({ ...c, hasPhoto: !!PHOTOS[c.first], noPhoto: !PHOTOS[c.first], stdBg: PHOTOS[c.first] ? 'url(' + PHOTOS[c.first][0] + ')' : 'none', funBg: PHOTOS[c.first] ? 'url(' + PHOTOS[c.first][1] + ')' : 'none', funOp: c.open ? '1' : '', rowBg: c.open ? 'rgba(220,194,137,.18)' : 'transparent', frame: c.open ? '#dcc289' : 'transparent', nameColor: c.open ? '#dcc289' : '#f4efe2' })),
+      castPhotos: CAST.map((c, idx) => ({ first: c.first, stdSrc: PHOTOS[c.first] ? PHOTOS[c.first][0] : '', funSrc: PHOTOS[c.first] ? PHOTOS[c.first][1] : '', stdId: 'cast-' + c.first.toLowerCase() + '-std', funId: 'cast-' + c.first.toLowerCase() + '-fun', display: (st.cast ?? 0) === idx ? 'block' : 'none' })),
+      sel: (() => { const s = castItems[st.cast ?? 0], n = st.cast ?? 0; return { ...s, bioParas: [(t => t.charAt(0).toUpperCase() + t.slice(1))(s.playerBio.replace(/^Sample bio — /, '')), BIO_POOL[n % 4], BIO_POOL[(n + 1) % 4], BIO_POOL[(n + 2) % 4]] }; })(),
+      platforms: ['Spotify', 'Apple Podcasts', 'YouTube', 'Pocket Casts', 'RSS'],
+      hasPlayer: !!p,
+      now: now || {},
+      progressPct: (pos / dur * 100).toFixed(2) + '%',
+      timeLabel: fmt(pos) + ' / ' + fmt(dur),
+      isPaused: st.paused, isRunning: !st.paused,
+      togglePlay: () => this.setState(s => ({ paused: !s.paused })),
+      closePlayer: () => this.setState({ play: null, pos: 0 })
+    };
+  }
+}
+</script>
+</body>
+</html>

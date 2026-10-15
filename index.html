@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Drama Bonding · a tale told at the table, in books</title>
+  <meta name="description" content="Drama Bonding is an actual-play tabletop podcast, told in books.">
+  <meta name="theme-color" content="#f4efe2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Federo&family=Josefin+Sans:wght@400;600&display=swap">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/site.css">
+  <script type="module" src="js/main.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="site-header__bar">
+      <nav class="site-nav d-only" aria-label="Sections">
+        <a href="#episodes">Episodes</a>
+        <a href="#cast">Cast</a>
+        <a href="#about">About</a>
+      </nav>
+      <a class="brand" href="#top">
+        <span class="brand__word">DRAMA BONDING</span>
+        <span class="brand__tag">a tale told at the table, in books</span>
+      </a>
+      <div class="site-header__end">
+        <a class="pill d-only" href="#listen">Listen</a>
+        <button type="button" class="hamburger m-only" data-action="open-menu" aria-haspopup="dialog" aria-controls="menu" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="dbl-rule" aria-hidden="true"></div>
+  </header>
+
+  <main id="main">
+    <section id="top" class="hero" aria-label="Now unfolding"></section>
+
+    <section id="episodes" class="books" aria-labelledby="books-title">
+      <div class="section-head">
+        <span class="section-head__rule" aria-hidden="true"></span><span class="diamond" aria-hidden="true"></span>
+        <h2 class="section-head__title" id="books-title">THE BOOKS</h2>
+        <span class="diamond" aria-hidden="true"></span><span class="section-head__rule" aria-hidden="true"></span>
+      </div>
+      <div class="d-only" data-mount="shelf"></div>
+      <div class="m-only" data-mount="mobile-books"></div>
+    </section>
+
+    <section id="cast" class="cast" aria-labelledby="cast-title">
+      <div class="cast-head">
+        <span class="filigree" aria-hidden="true"><span class="filigree__dot"></span><span class="filigree__rule"></span><span class="filigree__diamond"></span><span class="filigree__ring"></span></span>
+        <h2 class="cast-head__title" id="cast-title">THE CAST</h2>
+        <span class="filigree filigree--end" aria-hidden="true"><span class="filigree__dot"></span><span class="filigree__rule"></span><span class="filigree__diamond"></span><span class="filigree__ring"></span></span>
+      </div>
+      <div class="d-only" data-mount="cast"></div>
+      <div class="m-only" data-mount="cast-mobile"></div>
+    </section>
+
+    <section id="about" class="about" aria-labelledby="about-title">
+      <div class="about__lead">
+        <p class="eyebrow">About the show</p>
+        <h2 class="about__title" id="about-title">Friends who should know better, rolling dice in the dark and calling it theatre.</h2>
+      </div>
+      <div class="about__body">
+        <p>Drama Bonding is an actual-play tabletop podcast, told in books. Each book is a complete tale — begin anywhere, though the wood remembers if you skip ahead.</p>
+        <p>New chapters arrive every other Wednesday. Expect heartbreak, poor decisions, and at least one song per session.</p>
+        <p class="about__est d-only"><span class="about__est-rule" aria-hidden="true"></span>EST. 2024</p>
+      </div>
+    </section>
+
+    <section id="listen" class="listen" aria-labelledby="listen-title">
+      <div class="section-head section-head--listen">
+        <span class="section-head__rule" aria-hidden="true"></span><span class="diamond" aria-hidden="true"></span>
+        <h2 class="section-head__title" id="listen-title">LISTEN</h2>
+        <span class="diamond" aria-hidden="true"></span><span class="section-head__rule" aria-hidden="true"></span>
+      </div>
+      <p class="listen__tagline">Wherever stories are told, we are there.</p>
+      <ul class="listen__links" data-mount="listen"></ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p class="site-footer__word">DRAMA BONDING</p>
+    <p class="site-footer__tag">Every tale ends. Ours just hasn’t yet.</p>
+    <a class="site-footer__top d-only" href="#top">Back to top</a>
+  </footer>
+
+  <section class="player" data-mount="player" aria-label="Now playing" hidden></section>
+
+  <dialog class="menu" id="menu" aria-label="Menu">
+    <div class="menu__top">
+      <p class="menu__word">DRAMA BONDING</p>
+      <button type="button" class="menu__close" data-action="close-menu" aria-label="Close menu">×</button>
+    </div>
+    <div class="dbl-rule" aria-hidden="true"></div>
+    <nav aria-label="Sections">
+      <ol class="menu__list">
+        <li><a href="#episodes"><span class="menu__num" aria-hidden="true">I</span>The Books</a></li>
+        <li><a href="#cast"><span class="menu__num" aria-hidden="true">II</span>The Cast</a></li>
+        <li><a href="#about"><span class="menu__num" aria-hidden="true">III</span>About</a></li>
+        <li><a href="#listen"><span class="menu__num" aria-hidden="true">IV</span>Listen</a></li>
+      </ol>
+    </nav>
+    <p class="menu__tag">a tale told at the table, in books</p>
+  </dialog>
+
+  <noscript><p class="noscript">The books, cast and player need JavaScript to open.</p></noscript>
+</body>
+</html>
